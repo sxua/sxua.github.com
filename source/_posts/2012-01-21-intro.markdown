@@ -1,0 +1,68 @@
+---
+layout: post
+title: "Intro"
+date: 2012-01-21 00:06
+comments: true
+categories: [Skip Intro]
+author: Olexandr Skrypnyk
+---
+Just testing an Octopress in this post. Seems to be a great platform for writing some stuff here.
+Or sharing some code snippets:
+{% gist 1438299 %}
+
+{% pullquote %}
+It could be a `gist` snippet or a plain code. Anyway it should looks very tasty, because {" Octopress is really awesome "}.
+{% endpullquote %}
+
+{% codeblock Mouse watching objects lang:js %}
+Obj.moveCamera = function(position) {
+  var _x = (Obj.IE) ? event.clientX + document.body.scrollTop : position.pageX;
+  var _y = (Obj.IE) ? event.clientY + document.body.scrollTop : position.pageY;
+  Obj.setCamera(1,_x,_y);
+  Obj.setCamera(2,_x,_y);
+};
+Obj.setCamera = function(cam, x, y) {
+  var img = 1, camera = $('camera_' + cam), wrapper = $$('.wrapper')[0], xOffset = (document.body.getWidth() - wrapper.getWidth())/2;
+  if (x > xOffset && x < xOffset + wrapper.getWidth()) {
+    var angle = parseInt(Math.atan((camera.offsetTop - y)/(camera.offsetLeft - x + xOffset)) * 180 / Math.PI);
+    if (cam == 1) {
+      if (angle < 1) {
+        img = 1;
+      } else if (angle >= 1 && angle < 5) {
+        img = 2;
+      } else if (angle >= 5 && angle < 18) {
+        img = 3;
+      } else if (angle >= 18) {
+        img = 4;
+      }    
+    } else if (cam == 2) {
+      if (angle >= 24) {
+        img = 1;
+      } else if (angle < 24 && angle >= -2) {
+        img = 2;
+      } else if (angle < -2 && angle >= -28) {
+        img = 3;
+      } else if (angle < -28) {
+        img = 4;
+      }
+    }
+    var regex = new RegExp(cam + '_' + img, 'g');
+    if (!regex.test(camera.down('img').src)) {
+      camera.down('img').src = '/images/' + cam + '_' + img + '.png';
+    }
+  }
+};
+Obj.images = new Array();
+Obj.preload = function() {
+  for (i = 0; i < this.preload.arguments.length; i++) {
+    this.images[i] = new Image();
+    this.images[i].src = this.preload.arguments[i];
+  }
+};
+{% endcodeblock %}
+
+{% blockquote Stay tuned http://www.urbandictionary.com/define.php?term=stay%20tuned %}
+(crackle) explosions reported at Pearl Harbor naval base in (crackle) Hawaii...stayed tuned for more news...
+{% endblockquote %}
+
+{% img center /images/cat_mac.jpg 482 362 So, I've heard you like kittens and Macs %}

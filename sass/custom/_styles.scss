@@ -1,2 +1,18 @@
 // This File is imported last, and will override other styles in the cascade
 // Add styles here to make changes without digging in too much
+$zero: 0 !important;
+
+#stackoverflow a {
+  border: 0;
+  text-decoration: none;
+}
+
+footer {
+  margin-bottom: $zero;
+  -moz-border-radius: $zero;
+  -webkit-border-radius: $zero;
+  -o-border-radius: $zero;
+  -ms-border-radius: $zero;
+  -khtml-border-radius: $zero;
+  border-radius: $zero;
+}
