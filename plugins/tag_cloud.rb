@@ -7,7 +7,7 @@ module Jekyll
     def render(context)
       s = StringIO.new
       begin
-        tags = context['site']['tag_dir'] || 'tag'
+        tags = context['site']['tags']
         unless tags.nil?
           sorted = tags.sort {|a, b| b[1].length <=> a[1].length}
           factor = 1

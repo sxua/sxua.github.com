@@ -4,6 +4,7 @@ title: "Intro"
 date: 2012-01-21 00:06
 comments: true
 categories: [Skip Intro]
+tags: [hello world, octopress]
 author: Olexandr Skrypnyk
 ---
 Just testing an Octopress in this post. Seems to be a great platform for writing some stuff here.
