@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Skip Intro | thought.to_note]]></title>
+  <link href="http://sxua.github.com/notes/categories/skip-intro/atom.xml" rel="self"/>
+  <link href="http://sxua.github.com/"/>
+  <updated>2012-01-21T03:30:24+02:00</updated>
+  <id>http://sxua.github.com/</id>
+  <author>
+    <name><![CDATA[Olexandr Skrypnyk]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Intro]]></title>
+    <link href="http://sxua.github.com/notes/2012/01/21/intro/"/>
+    <updated>2012-01-21T00:06:00+02:00</updated>
+    <id>http://sxua.github.com/notes/2012/01/21/intro</id>
+    <content type="html"><![CDATA[<p>Just testing an Octopress in this post. Seems to be a great platform for writing some stuff here.
+Or sharing some code snippets:
+<div><script src='https://gist.github.com/1438299.js?file='></script>
+<noscript><pre><code>eval([('d'..'f'), [['my', 'method'].join('_')], [&quot;\n&quot;]].map(&amp;:to_a).map(&amp;:join).join(' ') + ['puts &quot;That\'s my method!&quot;','end','my_method'].join(&quot;\n&quot;))</code></pre></noscript></div>
+</p>
+
+<p><span class='pullquote-right' data-pullquote='Octopress is really awesome '>
+It could be a <code>gist</code> snippet or a plain code. Anyway it should looks very tasty, because Octopress is really awesome.
+</span></p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Mouse watching objects  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="nx">Obj</span><span class="p">.</span><span class="nx">moveCamera</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">position</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="o">&lt;</span><span class="nx">em</span><span class="o">&gt;</span><span class="nx">x</span> <span class="o">=</span> <span class="p">(</span><span class="nx">Obj</span><span class="p">.</span><span class="nx">IE</span><span class="p">)</span> <span class="o">?</span> <span class="nx">event</span><span class="p">.</span><span class="nx">clientX</span> <span class="o">+</span> <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">scrollTop</span> <span class="o">:</span> <span class="nx">position</span><span class="p">.</span><span class="nx">pageX</span><span class="p">;</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="o">&lt;</span><span class="err">/em&gt;y = (Obj.IE) ? event.clientY + document.body.scrollTop : position.pageY;</span>
+</span><span class='line'>  <span class="nx">Obj</span><span class="p">.</span><span class="nx">setCamera</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="o">&lt;</span><span class="nx">em</span><span class="o">&gt;</span><span class="nx">x</span><span class="p">,</span><span class="o">&lt;</span><span class="err">/em&gt;y);</span>
+</span><span class='line'>  <span class="nx">Obj</span><span class="p">.</span><span class="nx">setCamera</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="o">&lt;</span><span class="nx">em</span><span class="o">&gt;</span><span class="nx">x</span><span class="p">,</span><span class="o">&lt;</span><span class="err">/em&gt;y);</span>
+</span><span class='line'><span class="p">};</span>
+</span><span class='line'><span class="nx">Obj</span><span class="p">.</span><span class="nx">setCamera</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">cam</span><span class="p">,</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="kd">var</span> <span class="nx">img</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">camera</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;camera_&#39;</span> <span class="o">+</span> <span class="nx">cam</span><span class="p">),</span> <span class="nx">wrapper</span> <span class="o">=</span> <span class="nx">$$</span><span class="p">(</span><span class="s1">&#39;.wrapper&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="nx">xOffset</span> <span class="o">=</span> <span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">getWidth</span><span class="p">()</span> <span class="o">-</span> <span class="nx">wrapper</span><span class="p">.</span><span class="nx">getWidth</span><span class="p">())</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nx">x</span> <span class="o">&gt;</span> <span class="nx">xOffset</span> <span class="o">&amp;</span><span class="nx">amp</span><span class="p">;</span><span class="o">&amp;</span><span class="nx">amp</span><span class="p">;</span> <span class="nx">x</span> <span class="o">&amp;</span><span class="nx">lt</span><span class="p">;</span> <span class="nx">xOffset</span> <span class="o">+</span> <span class="nx">wrapper</span><span class="p">.</span><span class="nx">getWidth</span><span class="p">())</span> <span class="p">{</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="kd">var</span> <span class="nx">angle</span> <span class="o">=</span> <span class="nb">parseInt</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">atan</span><span class="p">((</span><span class="nx">camera</span><span class="p">.</span><span class="nx">offsetTop</span> <span class="o">-</span> <span class="nx">y</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="nx">camera</span><span class="p">.</span><span class="nx">offsetLeft</span> <span class="o">-</span> <span class="nx">x</span> <span class="o">+</span> <span class="nx">xOffset</span><span class="p">))</span> <span class="o">*</span> <span class="mi">180</span> <span class="o">/</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">PI</span><span class="p">);</span>
+</span><span class='line'><span class="k">if</span> <span class="p">(</span><span class="nx">cam</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nx">angle</span> <span class="o">&amp;</span><span class="nx">lt</span><span class="p">;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">img</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">angle</span> <span class="o">&amp;</span><span class="nx">gt</span><span class="p">;</span><span class="o">=</span> <span class="mi">1</span> <span class="o">&amp;</span><span class="nx">amp</span><span class="p">;</span><span class="o">&amp;</span><span class="nx">amp</span><span class="p">;</span> <span class="nx">angle</span> <span class="o">&amp;</span><span class="nx">lt</span><span class="p">;</span> <span class="mi">5</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">img</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">angle</span> <span class="o">&amp;</span><span class="nx">gt</span><span class="p">;</span><span class="o">=</span> <span class="mi">5</span> <span class="o">&amp;</span><span class="nx">amp</span><span class="p">;</span><span class="o">&amp;</span><span class="nx">amp</span><span class="p">;</span> <span class="nx">angle</span> <span class="o">&amp;</span><span class="nx">lt</span><span class="p">;</span> <span class="mi">18</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">img</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">angle</span> <span class="o">&amp;</span><span class="nx">gt</span><span class="p">;</span><span class="o">=</span> <span class="mi">18</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">img</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">cam</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="nx">angle</span> <span class="o">&amp;</span><span class="nx">gt</span><span class="p">;</span><span class="o">=</span> <span class="mi">24</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">img</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">angle</span> <span class="o">&amp;</span><span class="nx">lt</span><span class="p">;</span> <span class="mi">24</span> <span class="o">&amp;</span><span class="nx">amp</span><span class="p">;</span><span class="o">&amp;</span><span class="nx">amp</span><span class="p">;</span> <span class="nx">angle</span> <span class="o">&amp;</span><span class="nx">gt</span><span class="p">;</span><span class="o">=</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">img</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">angle</span> <span class="o">&amp;</span><span class="nx">lt</span><span class="p">;</span> <span class="o">-</span><span class="mi">2</span> <span class="o">&amp;</span><span class="nx">amp</span><span class="p">;</span><span class="o">&amp;</span><span class="nx">amp</span><span class="p">;</span> <span class="nx">angle</span> <span class="o">&amp;</span><span class="nx">gt</span><span class="p">;</span><span class="o">=</span> <span class="o">-</span><span class="mi">28</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">img</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">angle</span> <span class="o">&amp;</span><span class="nx">lt</span><span class="p">;</span> <span class="o">-</span><span class="mi">28</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">img</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">regex</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="nx">cam</span> <span class="o">+</span> <span class="s1">&#39;_&#39;</span> <span class="o">+</span> <span class="nx">img</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">);</span>
+</span><span class='line'><span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">regex</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">camera</span><span class="p">.</span><span class="nx">down</span><span class="p">(</span><span class="s1">&#39;img&#39;</span><span class="p">).</span><span class="nx">src</span><span class="p">))</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nx">camera</span><span class="p">.</span><span class="nx">down</span><span class="p">(</span><span class="s1">&#39;img&#39;</span><span class="p">).</span><span class="nx">src</span> <span class="o">=</span> <span class="s1">&#39;/images/&#39;</span> <span class="o">+</span> <span class="nx">cam</span> <span class="o">+</span> <span class="s1">&#39;_&#39;</span> <span class="o">+</span> <span class="nx">img</span> <span class="o">+</span> <span class="s1">&#39;.png&#39;</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="p">}</span>
+</span><span class='line'><span class="p">};</span>
+</span><span class='line'><span class="nx">Obj</span><span class="p">.</span><span class="nx">images</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">();</span>
+</span><span class='line'><span class="nx">Obj</span><span class="p">.</span><span class="nx">preload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&amp;</span><span class="nx">lt</span><span class="p">;</span> <span class="k">this</span><span class="p">.</span><span class="nx">preload</span><span class="p">.</span><span class="nx">arguments</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">pre</span><span class="o">&gt;&lt;</span><span class="nx">code</span><span class="o">&gt;</span><span class="k">this</span><span class="p">.</span><span class="nx">images</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Image</span><span class="p">();</span>
+</span><span class='line'><span class="k">this</span><span class="p">.</span><span class="nx">images</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">src</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">preload</span><span class="p">.</span><span class="nx">arguments</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/code&gt;&lt;/pre&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>  <span class="p">}</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p><blockquote><p>(crackle) explosions reported at Pearl Harbor naval base in (crackle) Hawaii...stayed tuned for more news...</p><footer><strong>Stay tuned</strong> <cite><a href='http://www.urbandictionary.com/define.php?term=stay%20tuned'>www.urbandictionary.com/&hellip;</a></cite></footer></blockquote></p>
+
+<p><img class="center" src="/images/cat_mac.jpg" width="482" height="362" title="So, I've heard you like kittens and Macs" ></p>
+]]></content>
+  </entry>
+  
+</feed>
