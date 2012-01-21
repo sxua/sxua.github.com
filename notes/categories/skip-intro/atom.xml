@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Skip Intro | thought.to_note]]></title>
   <link href="http://sxua.github.com/notes/categories/skip-intro/atom.xml" rel="self"/>
   <link href="http://sxua.github.com/"/>
-  <updated>2012-01-21T03:39:55+02:00</updated>
+  <updated>2012-01-21T12:52:35+02:00</updated>
   <id>http://sxua.github.com/</id>
   <author>
     <name><![CDATA[Olexandr Skrypnyk]]></name>
@@ -27,6 +27,9 @@ Or sharing some code snippets:
 <p><span class='pullquote-right' data-pullquote='Octopress is really awesome '>
 It could be a <code>gist</code> snippet or a plain code. Anyway it should looks very tasty, because Octopress is really awesome.
 </span></p>
+
+<!-- more -->
+
 
 <p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Mouse watching objects  </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
