@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: howto | thought.to_note]]></title>
+  <link href="http://sxua.github.com/notes/categories/howto/atom.xml" rel="self"/>
+  <link href="http://sxua.github.com/"/>
+  <updated>2012-01-21T23:13:29+02:00</updated>
+  <id>http://sxua.github.com/</id>
+  <author>
+    <name><![CDATA[Olexandr Skrypnyk]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Proxying Heroku App]]></title>
+    <link href="http://sxua.github.com/notes/2012/01/21/proxying-heroku-app/"/>
+    <updated>2012-01-21T14:21:00+02:00</updated>
+    <id>http://sxua.github.com/notes/2012/01/21/proxying-heroku-app</id>
+    <content type="html"><![CDATA[<p>A few weeks ago I've challenged to make some routing with Apache's <code>mod_rewrite</code>.
+The task was to show <code>http://someapp.heroku.com</code> when user visit <code>http://site.com/heroku</code>.
+Ok, it seems to be not a problem to extend <code>.htaccess</code> file one <code>RewriteRule</code> string:
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='apache'><span class='line'><span class="nb">RewriteRule</span> ^heroku/?(.&lt;em&gt;) http://someapp.heroku.com/$1 [P,L]
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+But our <code>http://site.com</code> running Wordpress, so the new rule must be separated with conditions:
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='apache'><span class='line'><span class="nb">RewriteCond</span> %{REQUEST_URI} ^\/heroku
+</span><span class='line'><span class="nb">RewriteRule</span> ^heroku/?(.&lt;/em&gt;) http://someapp.heroku.com/$1 [P,L]
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+Looks nice, and it works, but Heroku returns <code>Bad Request</code> error when I've tried to visit "rewrited" page. After some derping over internet, I found, that Heroku needs
+request header <code>host</code> to be set with an app domain, <code>someapp.heroku.com</code> in my case. But looking forward, I've noted that
+Wordpress using request header <code>host</code> for it's own purposes (e.g. link generation in admin), so I need to make another
+condition for request header. And here it comes - the final result:
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='apache'><span class='line'><span class="nb">SetEnvIf</span> Request_URI ^\/heroku heroku
+</span><span class='line'><span class="nb">RequestHeader</span> set host <span class="s2">&quot;someapp.heroku.com&quot;</span> env=heroku
+</span><span class='line'><span class="nb">RewriteCond</span> %{REQUEST_URI} ^\/heroku
+</span><span class='line'><span class="nb">RewriteRule</span> ^heroku/?(.*) http://someapp.heroku.com/$1 [P,L]
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+And after that manipulations - it works like charm now!</p>
+]]></content>
+  </entry>
+  
+</feed>

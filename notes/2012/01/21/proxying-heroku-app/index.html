@@ -5,11 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Tag: octopress - thought.to_note</title>
+  <title>Proxying Heroku App - thought.to_note</title>
   <meta name="author" content="Olexandr Skrypnyk">
 
   
-  <meta name="description" content="Tag: octopress">
+  <meta name="description" content="A few weeks ago I&#8217;ve challenged to make some routing with Apache&#8217;s mod_rewrite.
+The task was to show http://someapp.heroku.com when user &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://sxua.github.comnotes/tags/octopress">
+  <link rel="canonical" href="http://sxua.github.com/notes/2012/01/21/proxying-heroku-app">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -89,35 +90,144 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Tag: Octopress</h1>
+    
+      <h1 class="entry-title">Proxying Heroku App</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-01-21T14:21:00+02:00" pubdate data-updated="true">Jan 21<span>st</span>, 2012</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="tag">
 
 
+<div class="entry-content"><p>A few weeks ago I&#8217;ve challenged to make some routing with Apache&#8217;s <code>mod_rewrite</code>.
+The task was to show <code>http://someapp.heroku.com</code> when user visit <code>http://site.com/heroku</code>.
+Ok, it seems to be not a problem to extend <code>.htaccess</code> file one <code>RewriteRule</code> string:</p>
 
-  
-  <h2>2012</h2>
-
-<article>
-  
-<h1><a href="/notes/2012/01/21/intro/">Intro</a></h1>
-<time datetime="2012-01-21T00:06:00+02:00" pubdate><span class='month'>Jan</span> <span class='day'>21</span> <span class='year'>2012</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/notes/categories/skip-intro/'>Skip Intro</a></span>
-</footer>
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='apache'><span class='line'><span class="nb">RewriteRule</span> ^heroku/?(.*) http://someapp.heroku.com/$1 [P,L]
+</span></code></pre></td></tr></table></div></figure>
 
 
-</article>
+<p>But our <code>http://site.com</code> running Wordpress, so the new rule must be separated with conditions:</p>
 
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='apache'><span class='line'><span class="nb">RewriteCond</span> %{REQUEST_URI} ^\/heroku
+</span><span class='line'><span class="nb">RewriteRule</span> ^heroku/?(.*) http://someapp.heroku.com/$1 [P,L]
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Looks nice, and it works, but Heroku returns <code>Bad Request</code> error when I&#8217;ve tried to visit &#8220;rewrited&#8221; page. After some derping over internet, I found, that Heroku needs
+request header <code>host</code> to be set with an app domain, <code>someapp.heroku.com</code> in my case. But looking forward, I&#8217;ve noted that
+Wordpress using request header <code>host</code> for it&#8217;s own purposes (e.g. link generation in admin), so I need to make another
+condition for request header. And here it comes - the final result:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='apache'><span class='line'><span class="nb">SetEnvIf</span> Request_URI ^\/heroku heroku
+</span><span class='line'><span class="nb">RequestHeader</span> set host <span class="s2">&quot;someapp.heroku.com&quot;</span> env=heroku
+</span><span class='line'><span class="nb">RewriteCond</span> %{REQUEST_URI} ^\/heroku
+</span><span class='line'><span class="nb">RewriteRule</span> ^heroku/?(.*) http://someapp.heroku.com/$1 [P,L]
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And after that manipulations - it works like charm now!</p>
 </div>
+
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Olexandr Skrypnyk</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-01-21T14:21:00+02:00" pubdate data-updated="true">Jan 21<span>st</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/notes/categories/howto/'>howto</a>
+  
+</span>
+
+
+    </p>
+    
+      <p class="meta">
+        Tags: 
+
+<span class="tags">
+  
+    <a class='tag' href='/notes/tags/apache/'>apache</a>, <a class='tag' href='/notes/tags/heroku/'>heroku</a>, <a class='tag' href='/notes/tags/proxy/'>proxy</a>
+  
+</span>
+
+
+      </p>
+    
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://sxua.github.com/notes/2012/01/21/proxying-heroku-app/" data-via="ukrainesax" data-counturl="http://sxua.github.com/notes/2012/01/21/proxying-heroku-app/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/notes/2012/01/21/intro/" title="Previous Post: Intro">&laquo; Intro</a>
+      
+      
+    </p>
+  </footer>
 </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
 
@@ -203,7 +313,7 @@
 
 <section class="tag-cloud">
   <h1>Tags</h1>
-  <span class='rank-4'><a href='/notes/tags/heroku'>heroku</a></span> <span class='rank-4'><a href='/notes/tags/octopress'>octopress</a></span> <span class='rank-4'><a href='/notes/tags/apache'>apache</a></span> <span class='rank-4'><a href='/notes/tags/proxy'>proxy</a></span> <span class='rank-4'><a href='/notes/tags/hello-world'>hello world</a></span> 
+  <span class='rank-4'><a href='/notes/tags/apache'>apache</a></span> <span class='rank-4'><a href='/notes/tags/proxy'>proxy</a></span> <span class='rank-4'><a href='/notes/tags/heroku'>heroku</a></span> <span class='rank-4'><a href='/notes/tags/octopress'>octopress</a></span> <span class='rank-4'><a href='/notes/tags/hello-world'>hello world</a></span> 
 </section>
   
 </aside>
@@ -223,7 +333,10 @@
       var disqus_shortname = 'thoughttonote';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://sxua.github.com/notes/2012/01/21/proxying-heroku-app/';
+        var disqus_url = 'http://sxua.github.com/notes/2012/01/21/proxying-heroku-app/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

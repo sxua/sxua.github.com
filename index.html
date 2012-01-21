@@ -9,8 +9,8 @@
   <meta name="author" content="Olexandr Skrypnyk">
 
   
-  <meta name="description" content="Just testing an Octopress in this post. Seems to be a great platform for writing some stuff here.
-Or sharing some code snippets: eval([('d'..'f &hellip;">
+  <meta name="description" content="A few weeks ago I&#8217;ve challenged to make some routing with Apache&#8217;s mod_rewrite.
+The task was to show http://someapp.heroku.com when user &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -97,6 +97,78 @@ Or sharing some code snippets: eval([('d'..'f &hellip;">
       
   <header>
     
+      <h1 class="entry-title"><a href="/notes/2012/01/21/proxying-heroku-app/">Proxying Heroku App</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-01-21T14:21:00+02:00" pubdate data-updated="true">Jan 21<span>st</span>, 2012</time>
+        
+         | <a href="/notes/2012/01/21/proxying-heroku-app/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>A few weeks ago I&#8217;ve challenged to make some routing with Apache&#8217;s <code>mod_rewrite</code>.
+The task was to show <code>http://someapp.heroku.com</code> when user visit <code>http://site.com/heroku</code>.
+Ok, it seems to be not a problem to extend <code>.htaccess</code> file one <code>RewriteRule</code> string:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='apache'><span class='line'><span class="nb">RewriteRule</span> ^heroku/?(.*) http://someapp.heroku.com/$1 [P,L]
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>But our <code>http://site.com</code> running Wordpress, so the new rule must be separated with conditions:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='apache'><span class='line'><span class="nb">RewriteCond</span> %{REQUEST_URI} ^\/heroku
+</span><span class='line'><span class="nb">RewriteRule</span> ^heroku/?(.*) http://someapp.heroku.com/$1 [P,L]
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Looks nice, and it works, but Heroku returns <code>Bad Request</code> error when I&#8217;ve tried to visit &#8220;rewrited&#8221; page. After some derping over internet, I found, that Heroku needs
+request header <code>host</code> to be set with an app domain, <code>someapp.heroku.com</code> in my case. But looking forward, I&#8217;ve noted that
+Wordpress using request header <code>host</code> for it&#8217;s own purposes (e.g. link generation in admin), so I need to make another
+condition for request header. And here it comes - the final result:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='apache'><span class='line'><span class="nb">SetEnvIf</span> Request_URI ^\/heroku heroku
+</span><span class='line'><span class="nb">RequestHeader</span> set host <span class="s2">&quot;someapp.heroku.com&quot;</span> env=heroku
+</span><span class='line'><span class="nb">RewriteCond</span> %{REQUEST_URI} ^\/heroku
+</span><span class='line'><span class="nb">RewriteRule</span> ^heroku/?(.*) http://someapp.heroku.com/$1 [P,L]
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And after that manipulations - it works like charm now!</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/notes/2012/01/21/intro/">Intro</a></h1>
     
     
@@ -155,6 +227,10 @@ It could be a <code>gist</code> snippet or a plain code. Anyway it should looks 
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/notes/2012/01/21/proxying-heroku-app/">Proxying Heroku App</a>
+      </li>
     
       <li class="post">
         <a href="/notes/2012/01/21/intro/">Intro</a>
@@ -228,7 +304,7 @@ It could be a <code>gist</code> snippet or a plain code. Anyway it should looks 
 
 <section class="tag-cloud">
   <h1>Tags</h1>
-  <span class='rank-5'><a href='/notes/tags/octopress'>octopress</a></span> <span class='rank-5'><a href='/notes/tags/hello-world'>hello world</a></span> 
+  <span class='rank-4'><a href='/notes/tags/octopress'>octopress</a></span> <span class='rank-4'><a href='/notes/tags/heroku'>heroku</a></span> <span class='rank-4'><a href='/notes/tags/hello-world'>hello world</a></span> <span class='rank-4'><a href='/notes/tags/apache'>apache</a></span> <span class='rank-4'><a href='/notes/tags/proxy'>proxy</a></span> 
 </section>
   
 </aside>
