@@ -39,7 +39,7 @@ pygments: false # default python pygments have been replaced by pygments.rb
 paginate: 10          # Posts per page on the blog index
 pagination_dir: notes  # Directory base for pagination URLs eg. /blog/page/2/
 recent_posts: 5       # Posts in the sidebar Recent Posts section
-excerpt_link: "Read on &rarr;"  # "Continue reading" link text at the bottom of excerpted articles
+excerpt_link: "The More You Know &rarr;"  # "Continue reading" link text at the bottom of excerpted articles
 
 titlecase: true       # Converts page and post titles to titlecase
 
@@ -89,8 +89,8 @@ delicious_user:
 delicious_count: 3
 
 # Disqus Comments
-disqus_short_name:
-disqus_show_comment_count: false
+disqus_short_name: thoughttonote
+disqus_show_comment_count: true
 
 # Google Analytics
 google_analytics_tracking_id: 'UA-28520738-1'

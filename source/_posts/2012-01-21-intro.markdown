@@ -13,7 +13,7 @@ Or sharing some code snippets:
 {% pullquote %}
 It could be a `gist` snippet or a plain code. Anyway it should looks very tasty, because {" Octopress is really awesome "}.
 {% endpullquote %}
-
+<!-- more -->
 {% codeblock Mouse watching objects lang:js %}
 Obj.moveCamera = function(position) {
   var _x = (Obj.IE) ? event.clientX + document.body.scrollTop : position.pageX;
