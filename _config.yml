@@ -60,17 +60,9 @@ default_asides: [asides/recent_posts.html, asides/github.html, asides/twitter.ht
 
 # Github repositories
 github_user: sxua
-github_repo_count: 3
+github_repo_count: 5
 github_show_profile_link: true
-github_skip_forks: true
-
-# Twitter
-twitter_user: ukrainesax
-twitter_tweet_count: 3
-twitter_show_replies: false
-twitter_follow_button: true
-twitter_show_follower_count: true
-twitter_tweet_button: true
+github_skip_forks: false
 
 # Google +1
 google_plus_one: true
